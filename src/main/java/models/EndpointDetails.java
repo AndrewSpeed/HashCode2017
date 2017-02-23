@@ -8,7 +8,7 @@ public class EndpointDetails {
     private int id;
 	private int latencyToDatacenter;
     private int numConnectedCacheServers;
-    private List<VideoRequest> videoRequests;
+    public List<VideoRequest> videoRequests;
 
     // Map of cacheServerId and Latency
     private Map<CacheServer, Integer> cacheServerMap;
@@ -46,7 +46,8 @@ public class EndpointDetails {
         this.numConnectedCacheServers = numConnectedCacheServers;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return String.format("Endpoint[id: %1$s, latency to DC: %2$s, cache servers: \n\t%3$s]", id, latencyToDatacenter, cacheServerMap);
     }
 }

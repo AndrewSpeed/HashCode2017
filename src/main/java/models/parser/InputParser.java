@@ -13,10 +13,6 @@ import models.EndpointDetails;
 import models.Video;
 import models.VideoRequest;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.*;
-
 public class InputParser {
     private File file;
     private Scanner scanner;
@@ -57,6 +53,12 @@ public class InputParser {
         videos = parseVideos(parseLineDetails(scanner.nextLine()));
         endpoints = parseEndpoints(scanner);
         requests = parseRequests(scanner);
+        
+        for (VideoRequest request : requests) {
+        	EndpointDetails temp = endpoints.get(request.getEndpointId());
+        	
+        	temp.videoRequests.add(request);
+        }
     }
 
     private List<VideoRequest> parseRequests(final Scanner scanner) {
