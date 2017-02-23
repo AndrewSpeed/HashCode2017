@@ -5,5 +5,7 @@ public class Main {
         String fileName = "me_at_the_zoo.in";
         InputParser parser = new InputParser(fileName);
         parser.parse();
+        
+        
     }
 }

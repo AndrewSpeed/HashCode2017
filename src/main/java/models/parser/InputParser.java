@@ -1,14 +1,17 @@
 package models.parser;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
 import models.CacheServer;
 import models.EndpointDetails;
 import models.Video;
 import models.VideoRequest;
-
-import javax.xml.ws.Endpoint;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.*;
 
 public class InputParser {
     private File file;
@@ -21,7 +24,15 @@ public class InputParser {
     private int cacheServerCapacity;
 
     private List<Video> videos;
-    private List<EndpointDetails> endpoints;
+    public List<Video> getVideos() {
+		return videos;
+	}
+
+	public void setVideos(List<Video> videos) {
+		this.videos = videos;
+	}
+
+	private List<EndpointDetails> endpoints;
     private List<VideoRequest> requests;
 
     public InputParser(String fileName) {
@@ -109,6 +120,22 @@ public class InputParser {
         }
         return numberList;
     }
+
+	public List<EndpointDetails> getEndpoints() {
+		return endpoints;
+	}
+
+	public void setEndpoints(List<EndpointDetails> endpoints) {
+		this.endpoints = endpoints;
+	}
+
+	public List<VideoRequest> getRequests() {
+		return requests;
+	}
+
+	public void setRequests(List<VideoRequest> requests) {
+		this.requests = requests;
+	}
 
     // endpoint descriptions
     //  - line 1: latency from dc to endpoint
