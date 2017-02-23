@@ -13,6 +13,15 @@ public class CacheServer {
 		this.capacity = capacity;
 	}
 	
+	private Map<Integer, Integer> totalTimeSavePerVideo;
+	
+	public Map<Integer, Integer> getTotalTimeSavePerVideo() {
+		return totalTimeSavePerVideo;
+	}
+	public void setTotalTimeSavePerVideo(
+			Map<Integer, Integer> totalTimeSavePerVideo) {
+		this.totalTimeSavePerVideo = totalTimeSavePerVideo;
+	}
 	public int getId() {
 		return id;
 	}
@@ -33,7 +42,8 @@ public class CacheServer {
 	}
 
 
-    public String toString() {
+    @Override
+	public String toString() {
         return String.format("Cache[id: %1$s, capacity: %2$s, videos: %3$s]", id, capacity, videos);
     }
 }

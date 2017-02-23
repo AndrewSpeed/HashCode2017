@@ -4,6 +4,7 @@ public class VideoRequest {
 	private int videoId;
 	private int endpointId;
 	private int numRequests;
+	
 	public int getVideoId() {
 		return videoId;
 	}
