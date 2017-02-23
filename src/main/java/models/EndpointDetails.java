@@ -47,6 +47,6 @@ public class EndpointDetails {
     }
 
     public String toString() {
-        return String.format("Endpoint[id: %1$s, latency to DC: %2$s, cache servers: %3$s]", id, latencyToDatacenter, cacheServerMap);
+        return String.format("Endpoint[id: %1$s, latency to DC: %2$s, cache servers: \n\t%3$s]", id, latencyToDatacenter, cacheServerMap);
     }
 }

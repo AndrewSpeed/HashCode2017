@@ -1,6 +1,11 @@
 package models;
 
+import utils.MapUtil;
+
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 public class CacheServer {
 	private int id;
@@ -8,12 +13,13 @@ public class CacheServer {
 	// Map if videoId and Video object
 	private Map<Integer, Video> videos;
 
+	// aggregated time saved videoId to time in ms
+    private Map<Integer, Integer> totalTimeSavePerVideo;
+
 	public CacheServer(int id, int capacity) {
 		this.id = id;
 		this.capacity = capacity;
 	}
-	
-	private Map<Integer, Integer> totalTimeSavePerVideo;
 	
 	public void calculateVideos() {
 		
@@ -45,9 +51,12 @@ public class CacheServer {
 		this.videos = videos;
 	}
 
+	public Map<Integer, Integer> retrieveBestVideos() {
+        return MapUtil.sortByValue(totalTimeSavePerVideo);
+    }
 
     @Override
 	public String toString() {
-        return String.format("Cache[id: %1$s, capacity: %2$s, videos: %3$s]", id, capacity, videos);
+        return String.format("Cache[id: %1$s, capacity: %2$s, videos: \n\t%3$s]", id, capacity, videos);
     }
 }
