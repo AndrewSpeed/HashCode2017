@@ -15,6 +15,10 @@ public class CacheServer {
 	
 	private Map<Integer, Integer> totalTimeSavePerVideo;
 	
+	public void calculateVideos() {
+		
+	}
+	
 	public Map<Integer, Integer> getTotalTimeSavePerVideo() {
 		return totalTimeSavePerVideo;
 	}
