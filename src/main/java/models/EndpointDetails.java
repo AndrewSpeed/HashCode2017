@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class EndpointDetails {
 	private int latency;
-	// Map of cacheServerId and Latency
+	// Map of cacheServerId and LatencyDifference
 	private Map<Integer, Integer> cacheServerMap;
 	private List<VideoRequest> videoRequests;
 	
