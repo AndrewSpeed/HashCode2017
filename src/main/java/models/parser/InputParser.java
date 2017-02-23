@@ -2,6 +2,8 @@ package models.parser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputParser {
@@ -25,7 +27,15 @@ public class InputParser {
         while(scanner.hasNextLine()) {
             System.out.println(scanner.nextLine());
         }
+    }
 
+    private List<Integer> parseLineDetails(String line) {
+        String[] splitString = line.split(" ");
+        List<Integer> numberList = new ArrayList<Integer>();
+        for(String numberString : splitString) {
+            numberList.add(new Integer(numberString));
+        }
+        return numberList;
     }
     // line 1: number of videos, number of endpoints, number of request descriptions, number of cache servers, cache server capacity (MB)
     // line 2: size of each video in MB
