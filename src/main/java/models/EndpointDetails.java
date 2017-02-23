@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class EndpointDetails {
 	private int latency;
+	// Map of cacheServerId and Latency
 	private Map<Integer, Integer> cacheServerMap;
 	
 	public int getLatency() {
