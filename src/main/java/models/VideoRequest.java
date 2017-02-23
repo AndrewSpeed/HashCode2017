@@ -1,6 +1,6 @@
 package models;
 
-public class VideoRequestPerEndpoint {
+public class VideoRequest {
 	private int videoId;
 	private int endpointId;
 	private int numRequests;

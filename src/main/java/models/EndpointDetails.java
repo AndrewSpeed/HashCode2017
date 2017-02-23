@@ -1,13 +1,21 @@
 package models;
 
 
+import java.util.List;
 import java.util.Map;
 
 public class EndpointDetails {
 	private int latency;
 	// Map of cacheServerId and Latency
 	private Map<Integer, Integer> cacheServerMap;
+	private List<VideoRequest> videoRequests;
 	
+	public List<VideoRequest> getVideoRequests() {
+		return videoRequests;
+	}
+	public void setVideoRequests(List<VideoRequest> videoRequests) {
+		this.videoRequests = videoRequests;
+	}
 	public int getLatency() {
 		return latency;
 	}
