@@ -4,7 +4,14 @@ public class VideoRequest {
 	private int videoId;
 	private int endpointId;
 	private int numRequests;
-	
+
+	public VideoRequest(int videoId, int endpointId, int requestCount) {
+		this.videoId = videoId;
+		this.endpointId = endpointId;
+		this.numRequests = requestCount;
+	}
+
+
 	public int getVideoId() {
 		return videoId;
 	}
@@ -23,5 +30,9 @@ public class VideoRequest {
 	public void setNumRequests(int numRequests) {
 		this.numRequests = numRequests;
 	}
-	
+
+	public String toString() {
+	    return String.format("Request:[videoId: %1$s, endpointId: %2$s, number of requests: %3$s]", videoId, endpointId, numRequests);
+    }
+
 }

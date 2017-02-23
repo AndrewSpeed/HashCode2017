@@ -13,13 +13,17 @@ import models.EndpointDetails;
 import models.Video;
 import models.VideoRequest;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
+
 public class InputParser {
     private File file;
     private Scanner scanner;
 
     private int videoCount;
     private int endpointCount;
-    private int requestDescriptionCount;
+    private int requestCount;
     private int cacheServerCount;
     private int cacheServerCapacity;
 
@@ -53,14 +57,19 @@ public class InputParser {
         videos = parseVideos(parseLineDetails(scanner.nextLine()));
         endpoints = parseEndpoints(scanner);
         requests = parseRequests(scanner);
-
-        while(scanner.hasNextLine()) {
-            System.out.println(scanner.nextLine());
-        }
     }
 
     private List<VideoRequest> parseRequests(final Scanner scanner) {
-        return new ArrayList<VideoRequest>();
+        // request descriptions:
+        //  - video id, endpoint id, number of requests from endpoint for video
+        List<VideoRequest> requests = new ArrayList<VideoRequest>();
+        for(int i=0; i < requestCount; i++) {
+            List<Integer> videoIntegers = parseLineDetails(scanner.nextLine());
+            VideoRequest request = new VideoRequest(videoIntegers.get(0), videoIntegers.get(1), videoIntegers.get(2));
+            requests.add(request);
+        }
+        System.out.println(requests);
+        return requests;
     }
 
 
@@ -84,6 +93,10 @@ public class InputParser {
     }
 
     private void parseCachesForEndpoint(Scanner scanner, EndpointDetails endpoint) {
+        // endpoint descriptions
+        //  - line 1: latency from dc to endpoint
+        //  - line 2: (K) number of cache servers connected to endpoint
+        // next K lines: cache id & latency from cache to endpoint
         Map<CacheServer, Integer> caches = new HashMap<CacheServer, Integer>();
         for(int i=0; i < endpoint.getNumConnectedCacheServers(); i++) {
             List<Integer> cacheIntegers = parseLineDetails(scanner.nextLine());
@@ -107,7 +120,7 @@ public class InputParser {
         // line 1: number of videos, number of endpoints, number of request descriptions, number of cache servers, cache server capacity (MB)
         this.videoCount = integers.get(0);
         this.endpointCount = integers.get(1);
-        this.requestDescriptionCount = integers.get(2);
+        this.requestCount = integers.get(2);
         this.cacheServerCount = integers.get(3);
         this.cacheServerCapacity = integers.get(4);
     }
