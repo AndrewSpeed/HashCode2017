@@ -15,7 +15,7 @@ public class Main {
         
         for (EndpointDetails endpoint : parser.getEndpoints()) {
         	for (CacheServer server : endpoint.getCacheServerMap().keySet()) {
-        		server.
+        		
         	}
         }
     }

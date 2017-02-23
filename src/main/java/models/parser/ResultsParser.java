@@ -13,7 +13,7 @@ import models.Results;
 public class ResultsParser {
 	public static void writeResultsToFile(Results results) throws IOException{
 		
-		File fout = new File("out.txt");
+		File fout = new File("output.txt");
 		FileOutputStream fos = new FileOutputStream(fout);
 	 
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
