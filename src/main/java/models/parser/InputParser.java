@@ -1,6 +1,19 @@
 package models.parser;
 
+import java.io.File;
+
 public class InputParser {
+    String fileName;
+
+    public InputParser(String fileName) {
+        this.fileName = fileName;
+
+        ClassLoader classLoader = this.getClass().getClassLoader();
+        File file = new File(classLoader.getResource(fileName).getFile());
+
+        //File is found
+        System.out.println("File Found : " + file.exists());
+    }
     // line 1: number of videos, number of endpoints, number of request descriptions, number of cache servers, cache server capacity (MB)
     // line 2: size of each video in MB
     // endpoint descriptions
