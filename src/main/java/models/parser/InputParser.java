@@ -1,16 +1,25 @@
 package models.parser;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class InputParser {
-    String fileName;
+    File file;
+    Scanner scanner;
 
     public InputParser(String fileName) {
-        this.fileName = fileName;
-
         ClassLoader classLoader = this.getClass().getClassLoader();
-        File file = new File(classLoader.getResource(fileName).getFile());
+        this.file = new File(classLoader.getResource(fileName).getFile());
+        this.scanner = null;
+        try {
+            scanner = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        }
+    }
 
+    public void parse() {
         //File is found
         System.out.println("File Found : " + file.exists());
     }
