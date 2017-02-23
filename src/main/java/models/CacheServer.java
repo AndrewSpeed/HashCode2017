@@ -7,6 +7,11 @@ public class CacheServer {
 	private int capacity;
 	// Map if videoId and Video object
 	private Map<Integer, Video> videos;
+
+	public CacheServer(int id, int capacity) {
+		this.id = id;
+		this.capacity = capacity;
+	}
 	
 	public int getId() {
 		return id;
@@ -26,4 +31,9 @@ public class CacheServer {
 	public void setVideos(Map<Integer, Video> videos) {
 		this.videos = videos;
 	}
+
+
+    public String toString() {
+        return String.format("Cache[id: %1$s, capacity: %2$s, videos: %3$s]", id, capacity, videos);
+    }
 }

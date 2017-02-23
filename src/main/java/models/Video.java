@@ -20,5 +20,9 @@ public class Video {
 	}
 	public void setSize(int size) {
 		this.size = size;
-	}
+    }
+
+    public String toString() {
+	    return String.format("Video[id: %1$s, size: %2$s]", id, size);
+    }
 }

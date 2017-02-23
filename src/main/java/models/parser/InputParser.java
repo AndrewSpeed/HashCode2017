@@ -1,12 +1,14 @@
 package models.parser;
 
+import models.CacheServer;
+import models.EndpointDetails;
 import models.Video;
+import models.VideoRequest;
 
+import javax.xml.ws.Endpoint;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class InputParser {
     private File file;
@@ -19,6 +21,8 @@ public class InputParser {
     private int cacheServerCapacity;
 
     private List<Video> videos;
+    private List<EndpointDetails> endpoints;
+    private List<VideoRequest> requests;
 
     public InputParser(String fileName) {
         ClassLoader classLoader = this.getClass().getClassLoader();
@@ -36,18 +40,55 @@ public class InputParser {
         System.out.println("File Found : " + file.exists());
         parseScenarioDetails(parseLineDetails(scanner.nextLine()));
         videos = parseVideos(parseLineDetails(scanner.nextLine()));
+        endpoints = parseEndpoints(scanner);
+        requests = parseRequests(scanner);
 
         while(scanner.hasNextLine()) {
             System.out.println(scanner.nextLine());
         }
     }
 
+    private List<VideoRequest> parseRequests(final Scanner scanner) {
+        return new ArrayList<VideoRequest>();
+    }
+
+
+    private List<EndpointDetails> parseEndpoints(Scanner scanner) {
+        // endpoint descriptions
+        //  - line 1: latency from dc to endpoint
+        //  - line 2: (K) number of cache servers connected to endpoint
+        List<EndpointDetails> endpoints = new ArrayList<EndpointDetails>();
+        for(int i=0; i < endpointCount; i++) {
+            List<Integer> endpointIntegers = parseLineDetails(scanner.nextLine());
+            int latency = endpointIntegers.get(0);
+            int connectedCacheServerCount = endpointIntegers.get(1);
+
+            EndpointDetails endpoint = new EndpointDetails(i, latency, connectedCacheServerCount);
+            parseCachesForEndpoint(scanner, endpoint);
+
+            endpoints.add(endpoint);
+        }
+        System.out.println(endpoints);
+        return endpoints;
+    }
+
+    private void parseCachesForEndpoint(Scanner scanner, EndpointDetails endpoint) {
+        Map<CacheServer, Integer> caches = new HashMap<CacheServer, Integer>();
+        for(int i=0; i < endpoint.getNumConnectedCacheServers(); i++) {
+            List<Integer> cacheIntegers = parseLineDetails(scanner.nextLine());
+            CacheServer cache = new CacheServer(cacheIntegers.get(0), cacheIntegers.get(1));
+            caches.put(cache, cacheIntegers.get(1));
+        }
+        endpoint.setCacheServerMap(caches);
+    }
+
     private List<Video> parseVideos(final List<Integer> integers) {
         // line 2: size of each video in MB
         List<Video> videos = new ArrayList<Video>();
-        for(int i=0; i < integers.size() - 1; i++) {
+        for(int i=0; i < integers.size(); i++) {
             videos.add(new Video(i, integers.get(i)));
         }
+        System.out.println(videos);
         return videos;
     }
 
