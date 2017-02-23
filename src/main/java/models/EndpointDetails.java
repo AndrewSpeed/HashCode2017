@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class EndpointDetails {
 	private int latency;
-	private Map<String, String> cacheServerMap;
+	private Map<Integer, Integer> cacheServerMap;
 	
 	public int getLatency() {
 		return latency;
@@ -13,10 +13,10 @@ public class EndpointDetails {
 	public void setLatency(int latency) {
 		this.latency = latency;
 	}
-	public Map<String, String> getCacheServerMap() {
+	public Map<Integer, Integer> getCacheServerMap() {
 		return cacheServerMap;
 	}
-	public void setCacheServerMap(Map<String, String> cacheServerMap) {
+	public void setCacheServerMap(Map<Integer, Integer> cacheServerMap) {
 		this.cacheServerMap = cacheServerMap;
 	}
 }
