@@ -22,6 +22,10 @@ public class InputParser {
     public void parse() {
         //File is found
         System.out.println("File Found : " + file.exists());
+        while(scanner.hasNextLine()) {
+            System.out.println(scanner.nextLine());
+        }
+
     }
     // line 1: number of videos, number of endpoints, number of request descriptions, number of cache servers, cache server capacity (MB)
     // line 2: size of each video in MB
