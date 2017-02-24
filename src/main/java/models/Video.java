@@ -1,5 +1,7 @@
 package models;
 
+import java.util.List;
+
 public class Video {
 	private int id;
 	private int size;
@@ -7,6 +9,11 @@ public class Video {
 	public Video(int id, int size) {
 	    this.id = id;
 	    this.size = size;
+    }
+	
+	public Video(List<String> values) {
+	    this.id = Integer.parseInt(values.get(0));
+	    this.size = Integer.parseInt(values.get(1));
     }
 	
 	public int getId() {
@@ -22,7 +29,8 @@ public class Video {
 		this.size = size;
     }
 
-    public String toString() {
-	    return String.format("Video[id: %1$s, size: %2$s]", id, size);
+    @Override
+	public String toString() {
+	    return String.format("Video[id: %d, size: %d]", id, size);
     }
 }

@@ -18,6 +18,12 @@ public class EndpointDetails {
 	    this.latencyToDatacenter = latencyToDatacenter;
 	    this.numConnectedCacheServers = connectedCacheServerCount;
     }
+	
+	public EndpointDetails(List<String> values) {
+	    this.id = Integer.parseInt(values.get(0));
+	    this.latencyToDatacenter = Integer.parseInt(values.get(1));
+	    this.numConnectedCacheServers = Integer.parseInt(values.get(2));
+    }
 
     public List<VideoRequest> getVideoRequests() {
         return videoRequests;
@@ -48,6 +54,7 @@ public class EndpointDetails {
 
     @Override
 	public String toString() {
-        return String.format("Endpoint[id: %1$s, latency to DC: %2$s, cache servers: \n\t%3$s]", id, latencyToDatacenter, cacheServerMap);
+        return String.format("Endpoint[id: %d, latency to DC: %d, numConnectedCacheServers: %d, cache servers: \n\t%s]", 
+        		id, latencyToDatacenter, numConnectedCacheServers, cacheServerMap);
     }
 }

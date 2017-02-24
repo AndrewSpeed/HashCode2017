@@ -50,8 +50,7 @@ public class NumberDetails {
 	
 	@Override
 	public String toString() {
-		return "NumberDetails [numVideos = " + getNumVideos() + ", numEndpoints = " + getNumEndpoints()
-				+ ", numRequests = " + getNumRequests() + ", numCacheServers = " + getNumCacheServers() 
-				+ ", cacheSize = " + getCacheSize() + "]";
+		return String.format("NumberDetails [numVideos: %d, numEndpoints: %d, numRequests: %d, numCacheServers: %d, cacheSize: %d]", 
+				getNumVideos(), getNumEndpoints(), getNumRequests(), getNumCacheServers(), getCacheSize());
 	}
 }
