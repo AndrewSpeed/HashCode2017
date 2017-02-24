@@ -1,11 +1,21 @@
 package models;
 
+import java.util.List;
+
 public class NumberDetails {
 	private int numVideos;
 	private int numEndpoints;
 	private int numRequests;
 	private int numCacheServers;
 	private int cacheSize;
+	
+	public NumberDetails(List<String> values) {
+		this.numVideos = Integer.parseInt(values.get(0));
+		this.numEndpoints = Integer.parseInt(values.get(1));
+		this.numRequests =Integer.parseInt(values.get(2));
+		this.numCacheServers = Integer.parseInt(values.get(3));
+		this.cacheSize = Integer.parseInt(values.get(4));
+	}
 	
 	public int getNumVideos() {
 		return numVideos;
@@ -36,5 +46,12 @@ public class NumberDetails {
 	}
 	public void setCacheSize(int cacheSize) {
 		this.cacheSize = cacheSize;
+	}
+	
+	@Override
+	public String toString() {
+		return "NumberDetails [numVideos = " + getNumVideos() + ", numEndpoints = " + getNumEndpoints()
+				+ ", numRequests = " + getNumRequests() + ", numCacheServers = " + getNumCacheServers() 
+				+ ", cacheSize = " + getCacheSize() + "]";
 	}
 }
