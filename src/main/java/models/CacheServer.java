@@ -1,11 +1,9 @@
 package models;
 
-import utils.MapUtil;
-
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
+
+import utils.MapUtil;
 
 public class CacheServer {
 	private int id;
@@ -19,6 +17,11 @@ public class CacheServer {
 	public CacheServer(int id, int capacity) {
 		this.id = id;
 		this.capacity = capacity;
+	}
+	
+	public CacheServer(List<String> values) {
+		this.id = Integer.parseInt(values.get(0));
+		this.capacity = Integer.parseInt(values.get(1));
 	}
 	
 	public void calculateVideos() {

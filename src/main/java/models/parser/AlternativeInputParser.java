@@ -4,9 +4,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
+import models.CacheServer;
 import models.EndpointDetails;
 import models.NumberDetails;
 import models.Video;
@@ -47,8 +50,18 @@ public class AlternativeInputParser {
         for(int i=0; i < endpointCount; i++) {
         	EndpointDetails endpoint = parseObjectFromString(i + " " + scanner.nextLine(), EndpointDetails.class);
             endpoints.add(endpoint);
+            parseCachesForEndpoint(scanner, endpoint);
         }
         return endpoints;
+    }
+	
+	private void parseCachesForEndpoint(Scanner scanner, EndpointDetails endpoint) throws Exception {
+        Map<CacheServer, Integer> caches = new HashMap<CacheServer, Integer>();
+        for(int i=0; i < endpoint.getNumConnectedCacheServers(); i++) {
+            CacheServer cache = parseObjectFromString(scanner.nextLine(), CacheServer.class);
+            caches.put(cache, cache.getCapacity());
+        }
+        endpoint.setCacheServerMap(caches);
     }
 	
 	private <T> T parseObjectFromString(String s, Class<T> clazz) throws Exception {
