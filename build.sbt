@@ -2,7 +2,10 @@ name := "HashCode2017"
 
 version := "1.0"
 
-scalaVersion := "2.12.1"
+scalaVersion := "2.11.8"
 
-libraryDependencies += "org.scalaz" %% "scalaz-core" % "7.2.9"
+libraryDependencies ++= Seq(
+  "org.scalaz"        %% "scalaz-core" % "7.1.11",
+  "org.scalaz.stream" %% "scalaz-stream" % "0.8.5"
+)
     
